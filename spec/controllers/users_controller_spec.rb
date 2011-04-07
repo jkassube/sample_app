@@ -85,6 +85,13 @@ describe UsersController do
       get :new
       response.should have_selector("input[name='user[password_confirmation]'][type='password']")
     end
+    
+    it "should redirect the user to root if signed in" do
+      user = Factory(:user)
+      test_sign_in(user)
+      get :new
+      response.should redirect_to(root_path)
+    end
   
   end
   
@@ -176,6 +183,13 @@ describe UsersController do
         controller.should be_signed_in
       end
       
+      it "should redirect to root_path" do
+        user = Factory(:user)
+        test_sign_in(user)
+        get :create
+        response.should redirect_to(root_path)
+      end
+      
     end
   end
 
@@ -242,7 +256,7 @@ describe UsersController do
          @user.email.should == @attr[:email]
        end
        
-       it "should redirect tot he user show page" do
+       it "should redirect to the user show page" do
          put :update, :id => @user, :user => @attr
          response.should redirect_to(user_path(@user))
        end
