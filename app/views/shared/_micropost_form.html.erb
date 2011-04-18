@@ -2,8 +2,8 @@
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
 		<%= f.text_area :content %>
+		<p id="content_count"></p>
 	</div>
-	<div class="character_count" style="float:right;">140</div>
 	<div class="actions">
 		<%= f.submit "Submit" %>
 	</div>
