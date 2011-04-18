@@ -192,30 +192,43 @@ h1.micropost {
 	margin-bottom:0.3em;
 }
 
-table.microposts {
+ul.microposts {
 	margin-top: 1em;
 }
 
-table.microposts tr {
+ul.microposts li {
+	list-style: none;
 	height: 70px;
+	border-top: 1px solid #ccc;
 }
 
-table.microposts tr td.gravatar {
-	border-top: 1px solid #ccc;
+ul.microposts li:nth-child(odd) {
+	background-color: #bada55;
+}
+
+ul.microposts li div.gravatar {
+	float: left;
+	margin-right: 10px;
 	vertical-align: top;
 	width: 50px;
 }
 
-table.microposts tr td.micropost {
-	border-top: 1px solid #ccc;
-	vertical-align: top;
-	padding-top: 10px;
+ul.microposts li div.micropost {
+	float: left;
+
+	margin-top: 10px;
+	width: 400px;
 }
 
-table.microposts tr td.micropost span.timestamp {
+ul.microposts li div.micropost span.timestamp {
 	display: block;
 	font-size: 85%;
 	color: #666;
+}
+
+ul.microposts li div.delete_link {
+	float: right;
+	padding-left: 10px;
 }
 
 div.user_info img {
