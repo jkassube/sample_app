@@ -37,6 +37,16 @@ describe PagesController do
         response.should have_selector("a", :href => following_user_path(@user), :content => "0 following")
         response.should have_selector("a", :href => followers_user_path(@user), :content => "1 follower")
       end
+      
+      it "should pluralize followers properly" do
+        third_user = Factory(:user, :email => Factory.next(:email))
+        third_user.follow!(@user)
+        
+        get :home
+        response.should have_selector("a", :href => followers_user_path(@user), :content => "2 followers")
+      end
+      
+      
     end
   end
   describe "GET 'contact'" do
