@@ -165,6 +165,12 @@ describe UsersController do
       response.should have_selector("a", :href => "/users/#{@user.id}?page=2", :content => "Next")
     end
     
+    it "should not show delete links for microposts not belonging to current user" do
+      @user = test_sign_in(@user)
+      second_user = Factory(:user, :email => Factory.next(:email))
+      get :show, :id => second_user
+      response.should_not have_selector("a", :content => "delete")
+    end
   end
 
   describe "POST 'create'" do
